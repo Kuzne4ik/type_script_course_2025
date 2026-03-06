@@ -12,8 +12,10 @@ export interface IArtist extends IBase{
 
 export interface ITrack extends IBase{
     title: string,
-    artist: IArtist,
+    duration: number,
     audioUrl: string,
+    artist: IArtist,
+    isPublished: boolean
 }
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';

@@ -16,6 +16,7 @@ export async function fetchTracks(): Promise<ITrack[]> {
 }
 */
 
+
 export async function fetchFromSpotify<T>(
     endpoint: string,
     params?: Record<string, string>
