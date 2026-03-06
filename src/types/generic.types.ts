@@ -1,10 +1,12 @@
-import type { ITrack } from "./music.types";
 
+
+
+/*
+import type { ITrack } from "./music.types";
 interface ISpotifyResponse{
     tracks: ITrack[];
 }
 
-/*
 export async function fetchTracks(): Promise<ITrack[]> {
     const response = await fetch('/api/tracks');
     const data = await response.json() as ISpotifyResponse;
@@ -25,9 +27,18 @@ export async function fetchFromSpotify<T>(
         url.searchParams.append(KeyboardEvent, value))
     }
 
-    const response = await fetch(url.toString());
-    const data = await response.json() as {data: T};
-
-    return data.data;
-
+    try {
+        const response = await fetch(url.toString());
+    
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+            
+        const data = await response.json() as {data: T};
+        return data.data;
+    } 
+    catch (error) {
+        throw new Error(String(error));
+    }
+   
 }
